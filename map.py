@@ -66,11 +66,3 @@ class Node:
             return '|_O_|'
         else:
             return '|_ _|'
-
-    def __str__(self):
-        if self.occupant == 'Impostor':
-            return '|_X_|'
-        elif self.occupant == 'Crewmate':
-            return '|_O_|'
-        else:
-            return '|_ _|'
