@@ -11,12 +11,18 @@ class Map:
         """
         pass
 
-    def update_map(self, map, crew):
-        # TODO: Extremely busted.
+    def update_map(self, current_map, crew):
+        for row in current_map:
+            for node in row:
+                node.occupant = None
+
         for mate in crew:
             mate_y_coord, mate_x_coord = mate.position
-            updating_node = map[mate_y_coord][mate_x_coord]
-            updating_node.occupant = 'Crewmate'
+            updating_node = current_map[mate_y_coord][mate_x_coord]
+            updating_node.occupant = mate.name
+
+
+
 
     def draw_map(self):
         """

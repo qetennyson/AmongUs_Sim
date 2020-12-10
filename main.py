@@ -15,12 +15,15 @@ def main():
 
     # Generate Crew
     new_crew = sim_f.generate_crew(MAP_SIZE, task_list)
-
     print(new_crew)
 
-    # Redraw Map
-    new_map.update_map(new_map.board, new_crew)
-    new_map.draw_map()
+    while True:
+        # Redraw Map
+        new_map.update_map(new_map.board, new_crew)
+        new_map.draw_map()
+
+        # Movement
+        sim_f.movement(new_crew, MAP_SIZE)
 
 
 if __name__ == '__main__':
