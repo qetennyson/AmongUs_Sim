@@ -21,9 +21,6 @@ class Map:
             updating_node = current_map[mate_y_coord][mate_x_coord]
             updating_node.occupant = mate.name
 
-
-
-
     def draw_map(self):
         """
         Displays the map to the console.
