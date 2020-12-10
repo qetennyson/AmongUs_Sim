@@ -56,8 +56,12 @@ def generate_tasks(size, num_tasks=10):
 
 def generate_crew(size, crew_tasks):
     random.shuffle(COLORS)
-    return [Crewmate((random.randint(0, size - 1), random.randint(0, size - 1)),
+    crew = [Crewmate((random.randint(0, size - 1), random.randint(0, size - 1)),
                      random.choices(crew_tasks, k=4), COLORS.pop()) for i in range(int(size * 1.5))]
+
+    crew[random.randint(0,len(crew)-1)] = Impostor((random.randint(0, size - 1), random.randint(0, size - 1)),
+                     random.choices(crew_tasks, k=4), COLORS.pop())
+    return crew
 
 
 

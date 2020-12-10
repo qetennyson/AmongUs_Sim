@@ -1,20 +1,22 @@
 class Map:
-
     def __init__(self, size):
         self.size = size
         self.total_complete_tasks = 0
-        self.game_map = self.create_map()
+        self.board = [[Node(), Node(), Node(), Node()] for i in range(self.size)]
 
     def create_map(self):
         """
         Creates a map of empty nodes based on the given size.
         :return: multidimensional list of nodes.
         """
-        return [[Node()] * self.size for i in range(self.size)]
+        pass
 
-    def update_map(self, crew):
+    def update_map(self, map, crew):
         # TODO: Extremely busted.
-        
+        for mate in crew:
+            mate_y_coord, mate_x_coord = mate.position
+            updating_node = map[mate_y_coord][mate_x_coord]
+            updating_node.occupant = 'Crewmate'
 
     def draw_map(self):
         """
@@ -22,25 +24,26 @@ class Map:
         :return: None
         """
         print()
-        for row in self.game_map:
+        for row in self.board:
             print(row)
 
     def place_tasks(self, tasks):
+        # TODO: Removing tasks from map itself and just ticking them off from crewmate data for now.
         """
         Places tasks randomly across the map.
 
         :param tasks: A list of Task instances that will be assigned to random nodes on the current map.
         :return: None
         """
-        for task in tasks:
-            y_coord = task.location[0]
-            x_coord = task.location[1]
-            random_node = self.game_map[y_coord][x_coord]
-
-            random_node.tasks.append(task)
-
-            # TODO: Doesn't seem right that coordinates are cross-dependent in this way.
-            random_node.coordinates = task.location
+        # for task in tasks:
+        #     y_coord = task.location[0]
+        #     x_coord = task.location[1]
+        #     random_node = self.board[y_coord][x_coord]
+        #
+        #     random_node.tasks.append(task)
+        #
+        #     # TODO: Doesn't seem right that coordinates are cross-dependent in this way.
+        #     random_node.coordinates = task.location
 
 
 class Node:
@@ -48,9 +51,8 @@ class Node:
     A node is used to contain data for a given space on the map.
     """
 
-    def __init__(self, tasks=[], coordinates=(), occupant=None):
+    def __init__(self, coordinates=(), occupant=None):
 
-        self.tasks = tasks
         self.coordinates = coordinates
         self.occupant = occupant
 

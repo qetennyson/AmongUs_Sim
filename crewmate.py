@@ -1,5 +1,5 @@
 class Crewmate:
-
+    #TODO: Don't think inheritance actually makes sense and impostor should just be a Boolean.
     def __init__(self, position, tasks, color):
         self.color = color
         self.position = position
